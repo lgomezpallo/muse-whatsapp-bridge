@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: muse-whatsapp-bridge
+    env: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: WEBJS_AUTH_PATH
+        value: /data/.wwebjs_auth
+      - key: MUSE_WEBHOOK_URL
+        sync: false # poné acá tu webhook de Muse / Zapier / n8n
+    disk:
+      name: wwebjs-session
+      mountPath: /data
+      sizeGB: 1
